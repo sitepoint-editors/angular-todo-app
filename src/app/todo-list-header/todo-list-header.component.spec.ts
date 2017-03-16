@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { TodoListHeaderComponent } from './todo-list-header.component';
+import { FormsModule } from '@angular/forms';
 
 describe('TodoListHeaderComponent', () => {
   let component: TodoListHeaderComponent;
@@ -11,6 +12,9 @@ describe('TodoListHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [ TodoListHeaderComponent ]
     })
     .compileComponents();

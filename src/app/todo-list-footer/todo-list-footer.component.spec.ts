@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { TodoListFooterComponent } from './todo-list-footer.component';
+import { Todo } from '../todo';
 
 describe('TodoListFooterComponent', () => {
   let component: TodoListFooterComponent;
@@ -19,6 +20,9 @@ describe('TodoListFooterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListFooterComponent);
     component = fixture.componentInstance;
+    component.todos = [
+      new Todo({ id: 1, title: 'Test', complete: false })
+    ];
     fixture.detectChanges();
   });
 

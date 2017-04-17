@@ -20,6 +20,8 @@ input {
   background: rgba(0, 0, 0, 0.003);
   box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
   margin: 0 0 16px 0;
+  font-size: 20px;
+  border-left: 2px solid transparent;
 }
 
 input.ng-invalid.ng-touched {
@@ -29,6 +31,8 @@ input.ng-invalid.ng-touched {
 .input-errors {
   color: red;
   margin: 0 0 16px 0;
+  padding: 0 0 0 16px;
+  font-size: 20px;
 }
 
 button {
@@ -36,4 +40,6 @@ button {
   background-color: rgba(175, 47, 47, 0.15);
   width: 100%;
   padding: 16px;
+  font-size: 20px;
+  cursor: pointer;
 }

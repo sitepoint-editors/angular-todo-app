@@ -17,10 +17,22 @@ export class ApiService {
   ) {
   }
 
+  public signIn(username: string, password: string) {
+    return this.http
+      .post(API_URL + '/sign-in', {
+        username,
+        password
+      })
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
+
   public getAllTodos(): Observable<Todo[]> {
-    const headers = new Headers({ 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
-    'eyJuYW1lIjoiU2l0ZVBvaW50IFJlYWRlciJ9.sS4aPcmnYfm3PQlTtH14az9CGjWkjnsDyG_1ats4yYg' });
-    const options = new RequestOptions({ headers });
+    const headers = new Headers({
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+      'eyJuYW1lIjoiU2l0ZVBvaW50IFJlYWRlciJ9.sS4aPcmnYfm3PQlTtH14az9CGjWkjnsDyG_1ats4yYg'
+    });
+    const options = new RequestOptions({headers});
     return this.http
       .get(API_URL + '/todos', options)
       .map(response => {

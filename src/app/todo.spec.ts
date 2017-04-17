@@ -6,7 +6,7 @@ describe('Todo', () => {
   });
 
   it('should accept values in the constructor', () => {
-    let todo = new Todo({
+    const todo = new Todo({
       title: 'hello',
       complete: true
     });

@@ -1,0 +1,30 @@
+<div class="sign-in-wrapper">
+  <form [formGroup]="frm">
+    <input type="text" formControlName="username" placeholder="Your username">
+    <div
+      class="input-errors"
+      *ngIf="(frm.get('username').invalid && frm.get('username').touched) || showInputErrors"
+    >
+      <div *ngIf="frm.get('username').hasError('required')">
+        Please enter your username
+      </div>
+    </div>
+    <input type="password" formControlName="password" placeholder="Your password">
+    <div
+      class="input-errors"
+      *ngIf="(frm.get('password').invalid && frm.get('password').touched) || showInputErrors"
+    >
+      <div *ngIf="frm.get('password').hasError('required')">
+        Please enter your password
+      </div>
+    </div>
+    <button (click)="doSignIn()" [disabled]="isBusy">
+      <ng-template [ngIf]="!isBusy">Sign in</ng-template>
+      <ng-template [ngIf]="isBusy">Signing in, please wait...</ng-template>
+    </button>
+  </form>
+
+  <div *ngIf="hasFailed">
+    Sign in failed
+  </div>
+</div>

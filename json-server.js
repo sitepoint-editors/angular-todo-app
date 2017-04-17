@@ -12,11 +12,11 @@ const jwtToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU2l0ZVBvaW50I
 server.use(middlewares);
 
 // Handle sign-in requests
-server.post('sign-in', (req, res, next) => {
-  return {
+server.post('/sign-in', (req, res) => {
+  res.json({
     name: 'SitePoint Reader',
     token: jwtToken
-  };
+  });
 });
 
 // Protect other routes

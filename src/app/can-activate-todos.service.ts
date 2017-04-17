@@ -21,6 +21,7 @@ export class CanActivateTodosService implements CanActivate {
       this.router.navigate(['/sign-in']);
       return false;
     }
+    return true;
   }
 
 }

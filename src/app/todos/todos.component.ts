@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../todo-data.service';
 import { Todo } from '../todo';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,7 +17,9 @@ export class TodosComponent implements OnInit {
 
   constructor(
     private todoDataService: TodoDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService,
+    private router: Router
   ) {
   }
 
@@ -58,4 +62,10 @@ export class TodosComponent implements OnInit {
         }
       );
   }
+
+  public doSignOut() {
+    this.auth.doSignOut();
+    this.router.navigate(['/sign-in']);
+  }
+
 }

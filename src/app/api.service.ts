@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { environment } from 'environments/environment';
-import { Http, Response } from '@angular/http';
 import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -18,8 +18,11 @@ export class ApiService {
   }
 
   public getAllTodos(): Observable<Todo[]> {
+    const headers = new Headers({ 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+    'eyJuYW1lIjoiU2l0ZVBvaW50IFJlYWRlciJ9.sS4aPcmnYfm3PQlTtH14az9CGjWkjnsDyG_1ats4yYg' });
+    const options = new RequestOptions({ headers });
     return this.http
-      .get(API_URL + '/todos')
+      .get(API_URL + '/todos', options)
       .map(response => {
         const todos = response.json();
         return todos.map((todo) => new Todo(todo));
@@ -61,7 +64,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  private handleError (error: Response | any) {
+  private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }

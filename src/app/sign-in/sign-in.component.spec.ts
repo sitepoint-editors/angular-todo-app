@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignInComponent } from './sign-in.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../api.service';
+import { ApiMockService } from '../api-mock.service';
+import { AuthService } from '../auth.service';
+import { SessionService } from '../session.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;
@@ -8,7 +14,19 @@ describe('SignInComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SignInComponent ]
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule
+      ],
+      declarations: [ SignInComponent ],
+      providers: [
+        AuthService,
+        SessionService,
+        {
+          provide: ApiService,
+          useClass: ApiMockService
+        }
+      ]
     })
     .compileComponents();
   }));

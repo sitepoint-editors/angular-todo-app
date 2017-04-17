@@ -1,5 +1,6 @@
 <div class="sign-in-wrapper">
   <form [formGroup]="frm">
+    <h1>Todos</h1>
     <input type="text" formControlName="username" placeholder="Your username">
     <div
       class="input-errors"
@@ -18,13 +19,13 @@
         Please enter your password
       </div>
     </div>
+    <div class="sign-in-error" *ngIf="hasFailed">
+      Invalid username and password.
+    </div>
     <button (click)="doSignIn()" [disabled]="isBusy">
       <ng-template [ngIf]="!isBusy">Sign in</ng-template>
       <ng-template [ngIf]="isBusy">Signing in, please wait...</ng-template>
     </button>
+    <p class="tip">You can sign in with username "demo" and password "demo".</p>
   </form>
-
-  <div *ngIf="hasFailed">
-    Sign in failed
-  </div>
 </div>

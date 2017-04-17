@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { TodosComponent } from './todos/todos.component';
+import { CanActivateTodosService } from './can-activate-todos.service';
 
 const routes: Routes = [
   {
@@ -15,12 +16,18 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    component: TodosComponent
+    component: TodosComponent,
+    canActivate: [
+      CanActivateTodosService
+    ]
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CanActivateTodosService
+  ]
 })
 export class AppRoutingModule { }

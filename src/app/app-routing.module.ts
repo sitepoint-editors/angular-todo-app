@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { TodosComponent } from './todos/todos.component';
 import { CanActivateTodosGuard } from './can-activate-todos.guard';
+import { TodosResolver } from './todos.resolver';
+import { TodosContainerComponent } from './todos-container/todos-container.component';
 
 const routes: Routes = [
   {
@@ -16,10 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    component: TodosComponent,
+    component: TodosContainerComponent,
     canActivate: [
       CanActivateTodosGuard
-    ]
+    ],
+    resolve: {
+      todos: TodosResolver
+    }
   }
 ];
 
@@ -27,7 +31,9 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    CanActivateTodosGuard
+    CanActivateTodosGuard,
+    TodosResolver
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

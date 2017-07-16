@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { TodosComponent } from './todos/todos.component';
-import { CanActivateTodosService } from './can-activate-todos.service';
+import { CanActivateTodosGuard } from './can-activate-todos.guard';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'todos',
     component: TodosComponent,
     canActivate: [
-      CanActivateTodosService
+      CanActivateTodosGuard
     ]
   }
 ];
@@ -27,7 +27,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    CanActivateTodosService
+    CanActivateTodosGuard
   ]
 })
 export class AppRoutingModule { }

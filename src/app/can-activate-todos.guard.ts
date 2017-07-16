@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class CanActivateTodosService implements CanActivate {
+export class CanActivateTodosGuard implements CanActivate {
 
   constructor(
     private auth: AuthService,

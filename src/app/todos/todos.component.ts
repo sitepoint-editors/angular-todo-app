@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TodoDataService } from '../todo-data.service';
 import { Todo } from '../todo';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
+  selector: 'app-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
 
-  todos: Todo[] = [];
+  @Input() public todos: Todo[] = [];
 
   constructor(
     private todoDataService: TodoDataService,
@@ -20,16 +21,12 @@ export class TodosComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.todoDataService
-      .getAllTodos()
-      .subscribe(
-        (todos) => {
-          this.todos = todos;
-        }
-      );
   }
 
   onAddTodo(todo) {
+    if (!todo.title) {
+      return;
+    }
     this.todoDataService
       .addTodo(todo)
       .subscribe(

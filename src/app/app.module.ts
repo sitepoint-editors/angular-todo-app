@@ -15,7 +15,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { TodosComponent } from './todos/todos.component';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
-import { TodosContainerComponent } from './todos-container/todos-container.component';
+import { TodosPageComponent } from './todos-page/todos-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { TodosContainerComponent } from './todos-container/todos-container.compo
     TodoListItemComponent,
     SignInComponent,
     TodosComponent,
-    TodosContainerComponent
+    TodosPageComponent
   ],
   imports: [
     AppRoutingModule,

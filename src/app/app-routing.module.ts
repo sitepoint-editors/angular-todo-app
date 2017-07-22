@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { CanActivateTodosGuard } from './can-activate-todos.guard';
 import { TodosResolver } from './todos.resolver';
-import { TodosContainerComponent } from './todos-container/todos-container.component';
+import { TodosPageComponent } from './todos-page/todos-page.component';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'todos',
-    component: TodosContainerComponent,
+    component: TodosPageComponent,
     canActivate: [
       CanActivateTodosGuard
     ],

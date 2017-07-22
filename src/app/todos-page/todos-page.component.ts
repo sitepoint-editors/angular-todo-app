@@ -4,11 +4,11 @@ import { Todo } from '../todo';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-todos-container',
-  templateUrl: './todos-container.component.html',
-  styleUrls: ['./todos-container.component.css']
+  selector: 'app-todos-page',
+  templateUrl: './todos-page.component.html',
+  styleUrls: ['./todos-page.component.css']
 })
-export class TodosContainerComponent implements OnInit {
+export class TodosPageComponent implements OnInit {
 
   public todos$: Observable<Todo[]>;
 

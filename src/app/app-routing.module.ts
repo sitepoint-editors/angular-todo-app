@@ -36,7 +36,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    CanActivateTodosService
+    CanActivateTodosService,
+    TodosResolver
   ]
 })
 export class AppRoutingModule { }

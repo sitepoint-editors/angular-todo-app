@@ -15,9 +15,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { TodosComponent } from './todos/todos.component';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
-import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TodosComponent } from './todos/todos.component';
 
 @NgModule({
   declarations: [

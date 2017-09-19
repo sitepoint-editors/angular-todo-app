@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TodosComponent } from './todos/todos.component';
-import { CanActivateTodosService } from './can-activate-todos.service';
+import { CanActivateTodosGuard } from './can-activate-todos.guard';
 import { TodosResolver } from './todos.resolver';
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'todos',
     component: TodosComponent,
     canActivate: [
-      CanActivateTodosService
+      CanActivateTodosGuard
     ],
     resolve: {
       todos: TodosResolver
@@ -36,7 +36,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [
-    CanActivateTodosService,
+    CanActivateTodosGuard,
     TodosResolver
   ]
 })

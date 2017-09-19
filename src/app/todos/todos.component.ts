@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../todo-data.service';
 import { Todo } from '../todo';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css'],
-  providers: [TodoDataService]
+  styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
 

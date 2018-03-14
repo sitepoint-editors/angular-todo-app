@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { SessionService } from 'app/session.service';
 
 const API_URL = environment.apiUrl;
 
@@ -13,7 +14,8 @@ const API_URL = environment.apiUrl;
 export class ApiService {
 
   constructor(
-    private http: Http
+    private http: Http,
+    private session: SessionService
   ) {
   }
 
@@ -83,8 +85,7 @@ export class ApiService {
 
   private getRequestOptions() {
     const headers = new Headers({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
-      'eyJuYW1lIjoiU2l0ZVBvaW50IFJlYWRlciJ9.sS4aPcmnYfm3PQlTtH14az9CGjWkjnsDyG_1ats4yYg'
+      'Authorization': 'Bearer ' + this.session.accessToken
     });
     return new RequestOptions({ headers });
   }

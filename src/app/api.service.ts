@@ -7,6 +7,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { SessionService } from 'app/session.service';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from '@angular/common/http';
 
 const API_URL = environment.apiUrl;
 
@@ -14,7 +19,7 @@ const API_URL = environment.apiUrl;
 export class ApiService {
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private session: SessionService
   ) {
   }
@@ -25,7 +30,6 @@ export class ApiService {
         username,
         password
       })
-      .map(response => response.json())
       .catch(this.handleError);
   }
 
@@ -34,7 +38,7 @@ export class ApiService {
     return this.http
       .get(API_URL + '/todos', options)
       .map(response => {
-        const todos = response.json();
+        const todos = <any[]> response;
         return todos.map((todo) => new Todo(todo));
       })
       .catch(this.handleError);
@@ -45,7 +49,7 @@ export class ApiService {
     return this.http
       .post(API_URL + '/todos', todo, options)
       .map(response => {
-        return new Todo(response.json());
+        return new Todo(response);
       })
       .catch(this.handleError);
   }
@@ -55,7 +59,7 @@ export class ApiService {
     return this.http
       .get(API_URL + '/todos/' + todoId, options)
       .map(response => {
-        return new Todo(response.json());
+        return new Todo(response);
       })
       .catch(this.handleError);
   }
@@ -65,7 +69,7 @@ export class ApiService {
     return this.http
       .put(API_URL + '/todos/' + todo.id, todo, options)
       .map(response => {
-        return new Todo(response.json());
+        return new Todo(response);
       })
       .catch(this.handleError);
   }
@@ -78,15 +82,15 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  private handleError(error: Response | any) {
+  private handleError(error: HttpErrorResponse | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
 
   private getRequestOptions() {
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.session.accessToken
     });
-    return new RequestOptions({ headers });
+    return { headers };
   }
 }

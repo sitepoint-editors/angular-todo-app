@@ -7,6 +7,9 @@ import { TodoDataService } from '../todo-data.service';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from 'app/auth.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SessionService } from 'app/session.service';
 
 describe('TodosComponent', () => {
   let component: TodosComponent;
@@ -15,7 +18,10 @@ describe('TodosComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TodosComponent],
+      imports: [RouterTestingModule],
       providers: [
+        AuthService,
+        SessionService,
         TodoDataService,
         {
           provide: ApiService,

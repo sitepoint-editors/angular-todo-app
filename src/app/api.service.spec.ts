@@ -3,6 +3,8 @@ import { TestBed, inject } from '@angular/core/testing';
 import { ApiService } from './api.service';
 import { BaseRequestOptions, Http, XHRBackend } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { AuthService } from 'app/auth.service';
+import { SessionService } from 'app/session.service';
 
 describe('ApiService', () => {
   beforeEach(() => {
@@ -16,7 +18,9 @@ describe('ApiService', () => {
         },
         MockBackend,
         BaseRequestOptions,
-        ApiService
+        ApiService,
+        AuthService,
+        SessionService
       ]
     });
   });

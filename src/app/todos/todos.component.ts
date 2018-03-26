@@ -3,6 +3,7 @@ import { TodoDataService } from '../todo-data.service';
 import { Todo } from '../todo';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos',
@@ -23,7 +24,9 @@ export class TodosComponent implements OnInit {
 
   public ngOnInit() {
     this.route.data
-      .map((data) => data['todos'])
+      .pipe(
+        map((data) => data['todos'])
+      )
       .subscribe(
         (todos) => {
           this.todos = todos;

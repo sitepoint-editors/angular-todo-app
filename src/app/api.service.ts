@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { environment } from 'environments/environment';
 import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
@@ -12,6 +11,7 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 const API_URL = environment.apiUrl;
 
@@ -37,10 +37,12 @@ export class ApiService {
     const options = this.getRequestOptions();
     return this.http
       .get(API_URL + '/todos', options)
-      .map(response => {
-        const todos = <any[]> response;
-        return todos.map((todo) => new Todo(todo));
-      })
+      .pipe(
+        map(response => {
+          const todos = <any[]> response;
+          return todos.map((todo) => new Todo(todo));
+        })
+      )
       .catch(this.handleError);
   }
 
@@ -48,9 +50,11 @@ export class ApiService {
     const options = this.getRequestOptions();
     return this.http
       .post(API_URL + '/todos', todo, options)
-      .map(response => {
-        return new Todo(response);
-      })
+      .pipe(
+        map(response => {
+          return new Todo(response);
+        })
+      )
       .catch(this.handleError);
   }
 
@@ -58,9 +62,11 @@ export class ApiService {
     const options = this.getRequestOptions();
     return this.http
       .get(API_URL + '/todos/' + todoId, options)
-      .map(response => {
-        return new Todo(response);
-      })
+      .pipe(
+        map(response => {
+          return new Todo(response);
+        })
+      )
       .catch(this.handleError);
   }
 
@@ -68,9 +74,11 @@ export class ApiService {
     const options = this.getRequestOptions();
     return this.http
       .put(API_URL + '/todos/' + todo.id, todo, options)
-      .map(response => {
-        return new Todo(response);
-      })
+      .pipe(
+        map(response => {
+          return new Todo(response);
+        })
+      )
       .catch(this.handleError);
   }
 
@@ -78,7 +86,6 @@ export class ApiService {
     const options = this.getRequestOptions();
     return this.http
       .delete(API_URL + '/todos/' + todoId, options)
-      .map(response => null)
       .catch(this.handleError);
   }
 

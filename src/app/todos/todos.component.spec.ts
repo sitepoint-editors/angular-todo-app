@@ -8,8 +8,8 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from 'app/auth.service';
-import { RouterTestingModule } from '@angular/router/testing';
 import { SessionService } from 'app/session.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TodosComponent', () => {
   let component: TodosComponent;
